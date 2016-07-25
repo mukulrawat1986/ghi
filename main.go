@@ -34,7 +34,11 @@ func listIssuesCommand() cli.Command {
 		Flags: []cli.Flag{
 			cli.StringFlag{
 				Name:  "s, state",
-				Usage: "enter the state of the repository, either 'open' or 'closed'.",
+				Usage: "Enter the state of the repository, either 'open' or 'closed'.",
+			},
+			cli.StringFlag{
+				Name:  "a, author",
+				Usage: "Find issues created by a certain user.",
 			},
 		},
 		Usage:  "List the issues of the mentioned repository",
