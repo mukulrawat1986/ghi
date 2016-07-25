@@ -13,9 +13,22 @@ func runListIssues(c *cli.Context) error {
 		return cli.NewExitError("No arguments given", 10)
 	}
 
+	var terms []string
+
+	// get the name of the repository from the argument
 	repo := c.Args().Get(0)
 
-	result, err := listIssues(repo)
+	// get the value of the flag state
+	state := c.String("state")
+
+	// append the flags and arguments in terms
+	terms = append(terms, "repo:"+repo)
+
+	if state != "" {
+		terms = append(terms, "state:"+state)
+	}
+
+	result, err := listIssues(terms)
 
 	if err != nil {
 		log.Fatal(err)

@@ -5,12 +5,14 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 // listIssues queries the Github issue tracker and lists out the issues
-func listIssues(term string) (*IssueSearchResult, error) {
+func listIssues(terms []string) (*IssueSearchResult, error) {
+
 	// query escape the term
-	q := url.QueryEscape(term)
+	q := url.QueryEscape(strings.Join(terms, " "))
 
 	// create the url
 	u := fmt.Sprintf("%s/search/issues?q=%s", ApiRoot, q)
