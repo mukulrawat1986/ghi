@@ -21,8 +21,12 @@ func runListIssues(c *cli.Context) error {
 	// get the value of the flag state
 	state := c.String("state")
 
+	// since we are only searching for issues, we will restrict result to issues
+	issue := "issue"
+
 	// append the flags and arguments in terms
 	terms = append(terms, "repo:"+repo)
+	terms = append(terms, "type:"+issue)
 
 	if state != "" {
 		terms = append(terms, "state:"+state)
